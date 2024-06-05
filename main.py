@@ -1,17 +1,15 @@
-import cgi
-import os
+from flask import Flask, request
+from datetime import datetime
 
-print("Content-Type: text/html")
-print()
+app = Flask(__name__)
 
-# Get the user's IP address
-ip_address = os.environ.get("REMOTE_ADDR", "Unknown")
+@app.route('/log_ip', methods=['POST'])
+def log_ip():
+    ip_address = request.remote_addr
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open("IPs.txt", "a") as file:
+        file.write(f"{timestamp} - {ip_address}\n")
+    return "IP Logged", 200
 
-# Save the IP address to a file
-with open("IPs.txt", "a") as file:
-    file.write(f"{ip_address}\n")
-
-print("<html><body>")
-print("<h1>IP Address Logged</h1>")
-print(f"<p>Your IP address ({}) has been logged.</p>")
-print("</body></html>")
+if __name__ == '__main__':
+    app.run(debug=True)
