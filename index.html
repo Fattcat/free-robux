@@ -19,12 +19,25 @@
             font-size: 1.2em;
         }
     </style>
+    <script>
+        window.onload = function() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    fetch('https://your-external-server.com/log_ip', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ ip: data.ip })
+                    });
+                });
+        }
+    </script>
 </head>
 <body>
     <h1>Welcome to My Web Site</h1>
     <p>This is a simple web page with IP logging.</p>
-    <form action="main.py" method="post">
-        <button type="submit">Log My IP Address</button>
-    </form>
+    <p>Visit <a href="https://example.com">this link</a> for more information.</p>
 </body>
 </html>
