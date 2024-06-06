@@ -3,41 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Site</title>
+    <title>Prispôsobenie rozlíšeniu obrazovky</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+        }
+        
+        .content {
+            margin: 20px;
+            padding: 20px;
             background-color: #f0f0f0;
-            color: #333;
-            text-align: center;
-            padding: 50px;
+            font-size: 16px;
         }
-        h1 {
-            color: #007BFF;
+        
+        /* Pre malé obrazovky (max-width 600px) */
+        @media only screen and (max-width: 600px) {
+            .content {
+                background-color: #ffdddd;
+                font-size: 14px;
+            }
+            .mobile-message {
+                display: block;
+            }
+            .desktop-message {
+                display: none;
+            }
         }
-        p {
-            font-size: 1.2em;
+        
+        /* Pre stredne veľké obrazovky (601px až 1200px) */
+        @media only screen and (min-width: 601px) and (max-width: 1200px) {
+            .content {
+                background-color: #ddffdd;
+                font-size: 16px;
+            }
+            .mobile-message {
+                display: none;
+            }
+            .desktop-message {
+                display: block;
+            }
+        }
+        
+        /* Pre veľké obrazovky (min-width 1201px) */
+        @media only screen and (min-width: 1201px) {
+            .content {
+                background-color: #ddddff;
+                font-size: 18px;
+            }
+            .mobile-message {
+                display: none;
+            }
+            .desktop-message {
+                display: block;
+            }
         }
     </style>
-    <script>
-        window.onload = function() {
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    fetch('https://your-external-server.com/log_ip', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ ip: data.ip })
-                    });
-                });
-        }
-    </script>
 </head>
 <body>
-    <h1>Welcome to My Web Site</h1>
-    <p>This is a simple web page with IP logging.</p>
-    <p>Visit <a href="https://example.com">this link</a> for more information.</p>
+    <div class="content">
+        <div class="mobile-message" style="display: none;">
+            Toto je mobilné zariadenie.
+        </div>
+        <div class="desktop-message" style="display: none;">
+            Toto je desktop zariadenie.
+        </div>
+        Prispôsobenie obsahu podľa rozlíšenia obrazovky.
+    </div>
 </body>
 </html>
