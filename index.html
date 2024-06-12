@@ -7,9 +7,19 @@
 </head>
 <body>
     <h1>Video Example</h1>
-    <video width="640" height="360" controls autoplay muted>
+    <video id="myVideo" width="700" height="300" controls autoplay>
         <source src="RickAstley.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <script>
+        // Získanie videa
+        var video = document.getElementById("VideoPlayer");
+
+        // Po načítaní stránky spustí video aj so zvukom
+        window.onload = function() {
+            video.play();
+        };
+    </script>
 </body>
 </html>
