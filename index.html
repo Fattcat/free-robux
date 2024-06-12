@@ -3,71 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prispôsobenie rozlíšeniu obrazovky</title>
+    <title>Auto Play Video with Full Volume</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-        }
-        
-        .content {
-            margin: 20px;
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             background-color: #f0f0f0;
-            font-size: 16px;
-        }
-        
-        /* Pre malé obrazovky (max-width 600px) */
-        @media only screen and (max-width: 600px) {
-            .content {
-                background-color: #ffdddd;
-                font-size: 14px;
-            }
-            .mobile-message {
-                display: block;
-            }
-            .desktop-message {
-                display: none;
-            }
-        }
-        
-        /* Pre stredne veľké obrazovky (601px až 1200px) */
-        @media only screen and (min-width: 601px) and (max-width: 1200px) {
-            .content {
-                background-color: #ddffdd;
-                font-size: 16px;
-            }
-            .mobile-message {
-                display: none;
-            }
-            .desktop-message {
-                display: block;
-            }
-        }
-        
-        /* Pre veľké obrazovky (min-width 1201px) */
-        @media only screen and (min-width: 1201px) {
-            .content {
-                background-color: #ddddff;
-                font-size: 18px;
-            }
-            .mobile-message {
-                display: none;
-            }
-            .desktop-message {
-                display: block;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <div class="mobile-message" style="display: none;">
-            Toto je mobilné zariadenie.
-        </div>
-        <div class="desktop-message" style="display: none;">
-            Toto je desktop zariadenie.
-        </div>
-        Prispôsobenie obsahu podľa rozlíšenia obrazovky.
-    </div>
+    <video id="myVideo" width="640" height="360" autoplay muted controls>
+        <source src="RickAytley.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const video = document.getElementById('myVideo');
+            video.volume = 1.0; // Set volume to 100%
+            video.muted = false; // Ensure the video is not muted
+        });
+    </script>
 </body>
 </html>
